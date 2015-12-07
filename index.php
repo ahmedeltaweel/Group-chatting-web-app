@@ -1,6 +1,11 @@
+<?php require 'database.php';
+$res = $con->query("SELECT * FROM `shouts`");
+ ?>
+
 <!doctype html>
 <html>
 <head>
+	<meta charset="UTF-8">
 	<title>Shout it</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -10,31 +15,30 @@
 			<h1>Shout It !!!!</h1>
 		</header>
 
-		<article id="shouts">
+		<div id="shouts">
 			<ul>
-				<li class="shout">
-					<span>10:00PM -</span> Ahmed: How Are You ?
-				</li>
-				<li class="shout">
-					<span>10:00PM -</span> Ahmed: How Are You ?
-				</li>
-				<li class="shout">
-					<span>10:00PM -</span> Ahmed: How Are You ?
-				</li>
-				<li class="shout">
-					<span>10:00PM -</span> Ahmed: How Are You ?
-				</li>
+			<?php while($row = $res->fetch_assoc()): ?>
+					<li class='shout'>
+						<span>
+							<?php echo $row["time"]; ?> :
+						</span>
+						<strong><?php echo$row["user"]; ?></strong>
+						-> <?php echo$row["message"]; ?>
+					</li>
+				<?php endwhile; ?>
 			</ul>
-		</article>
+		</div>
 
-		<article id="input">
+		<div id="input">
 			<form method="post" action="process.php">
-				<input type="text" name="user" placeholder="Enter your name">
-				<input type="text" name="message" placeholder="Enter your message">
+				<div class="input-content" >
+					<input type="text" name="user" placeholder="Enter your name">
+					<input type="text" name="message" placeholder="Enter your message">
+				</div>
 				<br>
-				<input type="submit" value="shout message" placeholder="Enter your name" class="shout-btn">
+				<input type="submit" value="shout message" class="shout-btn">
 			</form>
-		</article>
+		</div>
 	</section>
 </body>
 </html>

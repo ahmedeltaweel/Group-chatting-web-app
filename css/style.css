@@ -43,6 +43,11 @@ header h1{
 	color: #aaaaaa;
 }
 
+.input-content{
+	display: flex;
+	justify-content: space-between ;
+}
+
 #input {
 	width: 90%;
 	min-height: 80px;
@@ -68,5 +73,9 @@ header h1{
 @media only screen and (max-width:940px){
 	#input input[type='text']{
 		width: 98%;
+	}
+
+	.input-content{
+		flex-wrap:wrap;
 	}	
 }
