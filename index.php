@@ -1,5 +1,6 @@
 <?php require 'database.php';
-$res = $con->query("SELECT * FROM `shouts`");
+//getting data from DB
+$res = $con->query("SELECT * FROM `shouts` ORDER BY id DESC");
  ?>
 
 <!doctype html>
@@ -12,7 +13,7 @@ $res = $con->query("SELECT * FROM `shouts`");
 <body>
 	<section id="container">
 		<header>
-			<h1>Shout It !!!!</h1>
+			<h1>Message It !!!!</h1>
 		</header>
 
 		<div id="shouts">
@@ -30,13 +31,17 @@ $res = $con->query("SELECT * FROM `shouts`");
 		</div>
 
 		<div id="input">
+
+		<?php if(isset($_GET['error'])) :?>
+			<div class="error"><span><?php echo $_GET['error']; ?></span></div>
+		<?php endif;?>
 			<form method="post" action="process.php">
 				<div class="input-content" >
 					<input type="text" name="user" placeholder="Enter your name">
 					<input type="text" name="message" placeholder="Enter your message">
 				</div>
 				<br>
-				<input type="submit" value="shout message" class="shout-btn">
+				<input type="submit" value="shout message" class="shout-btn" name="submit">
 			</form>
 		</div>
 	</section>
